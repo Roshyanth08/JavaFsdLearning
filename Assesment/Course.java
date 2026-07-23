@@ -18,7 +18,7 @@ class Course {
     public String getCourseCode() {
         return courseCode;
     }
-
+//getcourse
     public String getCourseName() {
         return courseName;
     }
