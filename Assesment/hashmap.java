@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
+//hashmap class
 public class hashmap {
 
     public static void main(String[] args) {
