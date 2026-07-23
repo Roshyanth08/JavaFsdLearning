@@ -932,3 +932,4 @@ mysql> insert into voter(id,name,age) values(1,'nani',21);
 ERROR 1062 (23000): Duplicate entry '1' for key 'voter.PRIMARY'
 mysql> insert into voter(id,name,age) values(2,'nani',21);
 Query OK, 1 row affected (0.00 sec)
+
