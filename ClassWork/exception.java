@@ -1,5 +1,6 @@
 class exception {
     public static void main(String[] args) {
+        //try method
         try {
             int quantity = Integer.parseInt("abc");
             double price = 100.0;
