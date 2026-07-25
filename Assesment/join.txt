@@ -1,0 +1,93 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 23
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE company;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> USE company;
+Database changed
+mysql> CREATE TABLE employees(
+    ->  emp_id INT PRIMARY KEY,
+    ->  emp_name VARCHAR(50),
+    ->  dept_id INT
+    -> );
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> CREATE TABLE departments(
+    ->  dept_id INT PRIMARY KEY,
+    ->  dept_name VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> INSERT INTO employees VALUES
+    -> (1,'Shiva',101),
+    -> (2,'Rahul',102),
+    -> (3,'Ravi',103),
+    -> (4,'Priya',NULL);
+Query OK, 4 rows affected (0.04 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO departments VALUES
+    -> (101,'Cyber'),
+    -> (102,'AI'),
+    -> (104,'HR');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT e.emp_name,d.dept_name
+    -> FROM employees e
+    -> INNER JOIN departments d
+    -> ON e.dept_id=d.dept_id;
++----------+-----------+
+| emp_name | dept_name |
++----------+-----------+
+| Shiva    | Cyber     |
+| Rahul    | AI        |
++----------+-----------+
+2 rows in set (0.02 sec)
+
+mysql> SELECT e.emp_name,d.dept_name
+    -> FROM employees e
+    -> LEFT JOIN departments d
+    -> ON e.dept_id=d.dept_id;
++----------+-----------+
+| emp_name | dept_name |
++----------+-----------+
+| Shiva    | Cyber     |
+| Rahul    | AI        |
+| Ravi     | NULL      |
+| Priya    | NULL      |
++----------+-----------+
+4 rows in set (0.01 sec)
+
+mysql> SELECT e.emp_name,d.dept_name
+    -> FROM employees e
+    -> RIGHT JOIN departments d
+    -> ON e.dept_id=d.dept_id;
++----------+-----------+
+| emp_name | dept_name |
++----------+-----------+
+| Shiva    | Cyber     |
+| Rahul    | AI        |
+| NULL     | HR        |
++----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT ... LEFT JOIN ...
+    -> UNION
+    -> SELECT ... RIGHT JOIN ...;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '... LEFT JOIN ...
+UNION
+SELECT ... RIGHT JOIN ...' at line 1
+mysql>
+
