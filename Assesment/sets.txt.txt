@@ -1,0 +1,96 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 26
+Server version: 8.0.43 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> cteate database sets;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'cteate database sets' at line 1
+mysql> create database sets;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use sets;
+Database changed
+mysql> CREATE TABLE students(
+    -> id INT,
+    -> name VARCHAR(30)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> CREATE TABLE trainers(
+    -> id INT,
+    -> name VARCHAR(30)
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> INSERT INTO students VALUES
+    -> (1,'Shiva'),
+    -> (2,'Rahul'),
+    -> (3,'Ravi');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO trainers VALUES
+    -> (2,'Rahul'),
+    -> (3,'Ravi'),
+    -> (4,'Priya');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT name FROM students
+    -> UNION
+    -> SELECT name FROM trainers;
++-------+
+| name  |
++-------+
+| Shiva |
+| Rahul |
+| Ravi  |
+| Priya |
++-------+
+4 rows in set (0.05 sec)
+
+mysql> SELECT name FROM students
+    -> UNION ALL
+    -> SELECT name FROM trainers;
++-------+
+| name  |
++-------+
+| Shiva |
+| Rahul |
+| Ravi  |
+| Rahul |
+| Ravi  |
+| Priya |
++-------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT name FROM students
+    -> INTERSECT
+    -> SELECT name FROM trainers;
++-------+
+| name  |
++-------+
+| Rahul |
+| Ravi  |
++-------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT name FROM students
+    -> EXCEPT
+    -> SELECT name FROM trainers;
++-------+
+| name  |
++-------+
+| Shiva |
++-------+
+1 row in set (0.00 sec)
+
+mysql>
